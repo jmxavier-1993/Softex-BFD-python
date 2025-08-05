@@ -1,0 +1,7 @@
+print ("hello word", "Juliana Marinho")
+print ("hello word"+" "+ "Juliana Marinho")
+print ("hello word", "Juliana Marinho", sep ="+")
+print ("Olá mundo!!! \n  tudo bem?")
+print("Juliana Marinho " , end ="\n" )
+print ("Eu sou Juliana")
+print ("Olá mundo!!! \"ffff\" tudo bem?")
