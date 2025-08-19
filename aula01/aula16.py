@@ -1,10 +1,10 @@
 # lista
 # Criando uma lista de frutas
 # e inserindo valores dentro da lista com o append
-frutas=["banana","maçã","laranja"]
+frutas=["banana","maçã","laranja",["agrião","alho poró"]]
 
 
-# frutas.append("uva")
+frutas.append("kiwi")
 # print(frutas) 
 # Inserindo um valor no início da lista, ou pelo indice que desejar
 frutas.insert(0,"uva")
@@ -21,8 +21,8 @@ frutas.insert(0,"limao")
 # aluno="fred"
 # print(aluno[0])  # Imprime o primeiro caractere da string aluno ou a posicao que desejar
 
-# temperos=["sal","pimenta","cominho"]
-# frutas += temperos
+temperos=["sal","pimenta","cominho"]
+frutas += temperos
 
 # print(temperos)
 
@@ -63,3 +63,6 @@ idx_banana=salada_frutas.index("banana")
 
 salada_frutas.pop(idx_banana)
 print(salada_frutas)
+
+print(id(frutas))
+print(id(salada_frutas))
