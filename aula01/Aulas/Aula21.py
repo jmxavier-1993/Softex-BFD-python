@@ -28,6 +28,22 @@ for i in  livros:
 #  8- Dada a lista idades = [12, 18, 25, 14, 30], use um laço para exibir somente as idades maiores ou iguais a 18.
 idades = [12, 18, 25, 14, 30]
 maior18=[]
-if idades>=18:
- maior18.append(idades)
- 
+for i in idades:
+ if i >=18:
+  maior18.append(i)
+print(f"{maior18}")
+#  9- Crie uma lista valores = [10, 20, 30, 40]. Use um laço for para calcular manualmente a soma de todos os valores.
+valores = [10, 20, 30, 40]
+soma=0
+for i in valores:
+    soma+=i
+print(soma)
+# 10- Use input para receber 3 notas de dois alunos. As notas de cada aluno precisam ser armazenadas em uma lista separada que deve ser armazenada dentro de outra lista chamada notas, exemplo:
+# notas = [[7, 8, 9], [6, 5, 7]]
+notasaluno01=[]
+notasaluno02=[]
+for i in range(3):
+    notasaluno01.append(int(input(f"Digite a {i+1} nota do aluno01: ")))
+    notasaluno02.append(int(input(f"Digite a {i+1}  nota do aluno02: ")))
+    notas=[notasaluno01,notasaluno02]
+print(f"a media do aluno01 eh: {sum(notasaluno01)/len(notasaluno01)} \n a media do aluno02 eh: {sum(notasaluno02)/len(notasaluno02)} ")
