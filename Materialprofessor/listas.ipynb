@@ -1,0 +1,948 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "1c410f45",
+   "metadata": {},
+   "source": [
+    "## Listas\n",
+    "\n",
+    "Listas são dinâmicas. Os itens armazenados são ordenados, alteráveis e permitem valores duplicados. Ele pode conter diferentes tipos de dados ao mesmo tempo, incluindo outras listas.\n",
+    "\n",
+    "No Python, as listas são definidas pelo uso de colchetes [ ] e os itens são separados por virgula.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "dafd0e7d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'list'>\n",
+      "[2, '2', True, [1, 2, 3], 'olá!', []]\n",
+      "<class 'list'>\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Criando uma lista\n",
+    "lista_vazia = []\n",
+    "print(type(lista_vazia))\n",
+    "\n",
+    "lista_mista = [2, \"2\", True, [1,2,3], \"olá!\", lista_vazia]\n",
+    "print(lista_mista)\n",
+    "\n",
+    "frutas = [\"laranja\", \"melão\", \"banana\"]\n",
+    "\n",
+    "print(type(lista_vazia)) # Imprime o tipo do dado atribuído a variável lista"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d2c05317",
+   "metadata": {},
+   "source": [
+    "Os itens da lista são indexados, ou seja, sua posição é definida por um índice (index), que começa em zero [0], seguido por um [1] e assim sucessivamente. Os índices são usado para identificar itens e realizar outras operações que serão apresentadas mais adiante.\n",
+    "\n",
+    "A baixo temos uma representação dos índices em uma lista\n",
+    "```\n",
+    "  0    1    2    3\n",
+    "[\"a\", \"b\", \"c\", \"d\"]\n",
+    " -4   -3   -2   -1\n",
+    " ```\n",
+    " Note que valores negativos podem ser usados, sendo o índice [-1] representando o último item da lista \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "356d2366",
+   "metadata": {},
+   "source": [
+    "### Acessando itens da lista\n",
+    "Podemos usar os índices para acessar os itens da lista:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "9e4db675",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "melão\n",
+      "banana\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\"]\n",
+    "print(frutas[1])\n",
+    "print(frutas[-1]) # Acessa o último item da lista\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "102936b5",
+   "metadata": {},
+   "source": [
+    "Podemos usar o for para iterar pelos itens da lista:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "ece5fdb3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "laranja\n",
+      "melão\n",
+      "banana\n"
+     ]
+    }
+   ],
+   "source": [
+    "for fruta in frutas:\n",
+    "    print(fruta)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a87b1ef4",
+   "metadata": {},
+   "source": [
+    "#### Slice (fatiamento)\n",
+    "Com o slice, é possível selecionar vários itens da lista:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "5b691be7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['melão', 'banana']\n",
+      "['melão']\n",
+      "['banana']\n",
+      "['laranja', 'melão', 'banana']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\"]\n",
+    "print(frutas[1:3])  # Seleciona o itens do índice 1 ao 2. Assim como no range, o ultimo valor não esta incluso.\n",
+    "\n",
+    "print(frutas[1:-1]) # Mesmo usando o índice negativo, o ultimo elemento não entra.\n",
+    "\n",
+    "print(frutas[2:])  # Não informar um valor depois dos dois pontos, é a melhor forma de conseguir incluir o ultimo item da lista.\n",
+    "\n",
+    "print(frutas[:]) # A mesma ideia serve para o primeiro item. Aqui toda a lista é selecionada"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9e4d293b",
+   "metadata": {},
+   "source": [
+    "### Adicionando ítens a lista\n",
+    "\n",
+    "#### Método `.append(ítem)`\n",
+    "Adiciona o ítem ao final da lista"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "81bd26ea",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['laranja', 'melão', 'banana', 'kiwi']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\"]\n",
+    "\n",
+    "frutas.append(\"kiwi\")\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "21cdf0e6",
+   "metadata": {},
+   "source": [
+    "#### Método `.insert(índice, valor)`\n",
+    "Adiciona o ítem a um índice expecificado no método"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "1cb81f60",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['laranja', 'jaca', 'melão', 'banana', 'kiwi']\n",
+      "['laranja', 'jaca', 'melão', 'banana', 'kiwi', 'goiaba']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas.insert(1, \"jaca\")\n",
+    "print(frutas)\n",
+    "\n",
+    "frutas.insert(15, \"goiaba\")\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9a03a2b0",
+   "metadata": {},
+   "source": [
+    "Note que no ultimo insert, mesmo indicando o índice 15, o item foi adicionado ao ultimo índice da lista."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0acf0a9a",
+   "metadata": {},
+   "source": [
+    "#### Concatenando listas\n",
+    "Vários itens podem ser adicionados de uma vez a lista, concatenando duas listas:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "1d544ad5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['João', 'Bruna', 'Fred', 'Francisco', 'Maria']\n"
+     ]
+    }
+   ],
+   "source": [
+    "nomes = [\"João\", \"Bruna\", \"Fred\"]\n",
+    "nomes2 = [\"Francisco\", \"Maria\"]\n",
+    "nomes3 = nomes + nomes2\n",
+    "print(nomes3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e384bf06",
+   "metadata": {},
+   "source": [
+    "### Removendo itens da lista\n",
+    "\n",
+    "#### Método `.remove(item)`\n",
+    "Remove o item a partir do seu valor:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "3b7e274f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['laranja', 'banana', 'kiwi', 'goiaba']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\"]\n",
+    "frutas.remove(\"melão\")\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "602f7230",
+   "metadata": {},
+   "source": [
+    "#### Método `.pop(índice)`\n",
+    "Remove o item com base no seu índice e caso nenhum seja informado, remove o ultimo item:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "63e43f93",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['laranja', 'melão', 'kiwi', 'goiaba']\n",
+      "['laranja', 'melão', 'kiwi']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\"]\n",
+    "frutas.pop(2)\n",
+    "print(frutas)\n",
+    "\n",
+    "frutas.pop() #remove o ultimo item\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c3722f75",
+   "metadata": {},
+   "source": [
+    "#### Método `.clear`\n",
+    "O clear remove todos os itens da lista, tendo como resultado final uma lista vazia:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "a23e0101",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[]\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\"]\n",
+    "frutas.clear()\n",
+    "print(frutas)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "579cce78",
+   "metadata": {},
+   "source": [
+    "#### del\n",
+    "O del é usado para apagar qualquer informação na memoria, desde que não existe outra referência a ela.\n",
+    "No caso das listas, pode ser usado para apagar toda a lista ou um ítem dela: "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "d66d9b63",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['laranja', 'banana', 'kiwi', 'goiaba']\n"
+     ]
+    },
+    {
+     "ename": "NameError",
+     "evalue": "name 'frutas' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+      "\u001b[31mNameError\u001b[39m                                 Traceback (most recent call last)",
+      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[11]\u001b[39m\u001b[32m, line 6\u001b[39m\n\u001b[32m      3\u001b[39m \u001b[38;5;28mprint\u001b[39m(frutas)\n\u001b[32m      5\u001b[39m \u001b[38;5;28;01mdel\u001b[39;00m frutas \u001b[38;5;66;03m# Sem passar um índice, ele apaga a lista\u001b[39;00m\n\u001b[32m----> \u001b[39m\u001b[32m6\u001b[39m \u001b[38;5;28mprint\u001b[39m(\u001b[43mfrutas\u001b[49m)\n",
+      "\u001b[31mNameError\u001b[39m: name 'frutas' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\"]\n",
+    "del frutas[1]\n",
+    "print(frutas)\n",
+    "\n",
+    "del frutas # Sem passar um índice, ele apaga a lista\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b5ed20d1",
+   "metadata": {},
+   "source": [
+    "### Copiando listas\n",
+    "As listas se comportam de forma diferente dos outros tipos de dados...\n",
+    "#### Método `.copy()`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b9de0935",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\"]\n",
+    "frutas2 = frutas.copy()\n",
+    "print(f\"Id de frutas:  {id(frutas)}\\nId de frutas2: {id(frutas2)}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "93ae1aa8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "frutas4=list(frutas)\n",
+    "print(f\"Id de frutas:  {id(frutas)}\\nId de frutas2: {id(frutas4)}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fd19100d",
+   "metadata": {},
+   "source": [
+    "#### Usando Slice"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "60aa9696",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\"]\n",
+    "frutas3 = frutas[:]\n",
+    "print(f\"Id de frutas:  {id(frutas)}\\nId de frutas3: {id(frutas3)}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a7f289d1",
+   "metadata": {},
+   "source": [
+    "### Outros métodos das listas"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6c0f06e9",
+   "metadata": {},
+   "source": [
+    "#### Método `.count(item)`\n",
+    "Retorna a quantidade de itens com o valor especificado no método"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4114b287",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\", \"banana\"]\n",
+    "frutas.count(\"banana\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d815bfb3",
+   "metadata": {},
+   "source": [
+    "#### Método `.extend()`\n",
+    "Adiciona itens a lista a partir de outro iterável:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9b43f598",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['laranja', 'melão', 'banana', 'kiwi', 'goiaba', 'banana', 'cenoura']\n"
+     ]
+    }
+   ],
+   "source": [
+    "legumes = [\"cenoura\"]\n",
+    "frutas.extend(legumes)\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "558c0e23",
+   "metadata": {},
+   "source": [
+    "#### Método `.index`\n",
+    "Retorna o índice do item informado"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f64680f9",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "print(frutas.index(\"banana\"))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9004a4da",
+   "metadata": {},
+   "source": [
+    "#### `.sort()`\n",
+    "Ordena os itens da lista "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ce967a96",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['banana', 'banana', 'cenoura', 'goiaba', 'kiwi', 'laranja', 'melão']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas.sort()\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b0a1c203",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['melão', 'laranja', 'kiwi', 'goiaba', 'cenoura', 'banana', 'banana']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas.sort(reverse=True)\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "211f7f38",
+   "metadata": {},
+   "source": [
+    "Exemplo do uso de diferentes métodos das listas para remover itens repetidos: "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1302b1ba",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['laranja', 'melão', 'kiwi', 'goiaba']\n"
+     ]
+    }
+   ],
+   "source": [
+    "frutas = [\"laranja\", \"melão\", \"banana\", \"kiwi\", \"goiaba\",\"banana\"]\n",
+    "contagem_fruta = frutas.count(\"banana\")\n",
+    "if contagem_fruta > 1:\n",
+    "    while \"banana\" in frutas:\n",
+    "        frutas.remove(\"banana\")\n",
+    "print(frutas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "69135242",
+   "metadata": {},
+   "source": [
+    "### List comprehension\n",
+    "Uma forma de gerar uma lista com uma sequencia, iteravel ou repetindo valores em apenas uma linha.\n",
+    "\n",
+    "Podemos usar o `for` pra isso:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1b491b2e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lista1 = []\n",
+    "for num in range(10):\n",
+    "    lista1.append(num)\n",
+    "print(lista1)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a25c6d4f",
+   "metadata": {},
+   "source": [
+    "Com condicionais:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c5999711",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lista2 = []\n",
+    "for num in range(10):\n",
+    "    if num % 2 == 0:\n",
+    "     lista2.append(num)\n",
+    "print(lista2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fbb2c215",
+   "metadata": {},
+   "source": [
+    "Usando o list comprehension"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "68451a58",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lista1 = [num for num in range(10)]\n",
+    "print(lista1)\n",
+    "\n",
+    "lista2 = [num for num in range(10) if num % 2 == 0]\n",
+    "print(lista2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d8b4cb80",
+   "metadata": {},
+   "source": [
+    "### Lista bidimensional (Matriz)\n",
+    "Listas bidimensionais são matrizes. No python isso quer dizer uma lista que contem outras listas formando uma matriz no formato número_listas x número_itens.\n",
+    "\n",
+    "Exemplo de uma matriz 2x2:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "06287fd5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "matriz = [[1,2],[3,4]]\n",
+    "print(matriz)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9a68d1a7",
+   "metadata": {},
+   "source": [
+    "a matriz também pode ser representada assim:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "67c5ef76",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "matriz = [[1,2],\n",
+    "          [3,4]]\n",
+    "\n",
+    "matriz3x3 = [[1,2,\"a\"],\n",
+    "             [3,4,\"b\"],\n",
+    "             [5,6,\"c\"]]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c02d4858",
+   "metadata": {},
+   "source": [
+    "Criando matriz com for"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "aeaf0d11",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[0, 1, 2], [0, 1, 2], [0, 1, 2]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "matriz =[]\n",
+    "for i in range(3):\n",
+    "    sublista = []\n",
+    "    matriz.append(sublista)\n",
+    "    for x in range(3):\n",
+    "        sublista.append(x)\n",
+    "\n",
+    "print(matriz)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "efeeb90d",
+   "metadata": {},
+   "source": [
+    "Criando matriz com list comprehension"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "168228f1",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[0, 1, 2], [0, 1, 2], [0, 1, 2]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "matriz = [[i for i in range(3)] for x in range(3)]\n",
+    "\n",
+    "print(matriz)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9977321d",
+   "metadata": {},
+   "source": [
+    "Modificando um elemento da matriz"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "53ad8a3c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[1, 2, 3], [4, 5, 'a'], [7, 8, 9]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "matriz = [[1,2,3],\n",
+    "          [4,5,6],\n",
+    "          [7,8,9]]\n",
+    "matriz[1][2] = \"a\" # Acessa a segunda lista [1] e seleciona seu ultimo elemento [2]\n",
+    "print(matriz)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "74319b9f",
+   "metadata": {},
+   "source": [
+    "### Lista tridimensional\n",
+    "\n",
+    "Mesmo principio das listas bidimensionais, mas incluindo mais um nível de lista.\n",
+    "\n",
+    "Um bom exemplo de lista tridimensional é pensar em um condomínio com 3 blocos de 3 andares com 3 apartamentos por andar, onde a lista principal possui 3 listas, uma para cada blocos, e dentro de cada uma dessas listas temos 3 listas que representam os andares: "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a17a7ebd",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "B3\n"
+     ]
+    }
+   ],
+   "source": [
+    "condominio = [\n",
+    "    [[\"A1\",\"A2\",\"A3\"],[\"A4\",\"A5\",\"A6\"],[\"A7\",\"A8\",\"A9\"]], # bloco A\n",
+    "    [[\"B1\",\"B2\",\"B3\"],[\"B4\",\"B5\",\"B6\"],[\"B7\",\"B8\",\"B9\"]], # bloco B\n",
+    "    [[\"C1\",\"C2\",\"C3\"],[\"C4\",\"C5\",\"C6\"],[\"C7\",\"C8\",\"C9\"]]] # bloco C\n",
+    "\n",
+    "print(condominio[1][0][2]) # Acessando o apartamento B3"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "919cab5d",
+   "metadata": {},
+   "source": [
+    "Gerando uma lista tridimensional com o for:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "813e737d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[[1, 2, 3], [1, 2, 3], [1, 2, 3]], [[1, 2, 3], [1, 2, 3], [1, 2, 3]], [[1, 2, 3], [1, 2, 3], [1, 2, 3]]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "lista = []\n",
+    "\n",
+    "for z in range(3):\n",
+    "    bloco = []\n",
+    "    for y in range(3):\n",
+    "        linha = []\n",
+    "        for x in range(3):\n",
+    "            linha.append(x+1)  # você pode colocar outro valor ou expressão\n",
+    "        bloco.append(linha)\n",
+    "    lista.append(bloco)\n",
+    "\n",
+    "print(lista)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a7f91ff0",
+   "metadata": {},
+   "source": [
+    "Com list comprehension:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d97e4ed3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[[1, 2, 3], [1, 2, 3], [1, 2, 3]], [[1, 2, 3], [1, 2, 3], [1, 2, 3]], [[1, 2, 3], [1, 2, 3], [1, 2, 3]]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "lista = [[[x+1 for x in range(3)] for y in range(3)] for z in range(3)]\n",
+    "\n",
+    "print(lista)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
