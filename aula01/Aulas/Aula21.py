@@ -47,3 +47,24 @@ for i in range(3):
     notasaluno02.append(int(input(f"Digite a {i+1}  nota do aluno02: ")))
     notas=[notasaluno01,notasaluno02]
 print(f"a media do aluno01 eh: {sum(notasaluno01)/len(notasaluno01)} \n a media do aluno02 eh: {sum(notasaluno02)/len(notasaluno02)} ")
+
+# 11- Usando list comprehension, crie um tabuleiro de xadrez vazio e depois adicione todas as peças do jogo na posição inicial. 
+# Para melhorar a visualização do tabuleiro, identifique as posições do tabuleiro da seguinte forma:
+
+# [ ] - para posições vazias
+# tor - para a torre
+# cav - para o cavalo
+# bis - para o bispo
+# rai - para a rainha
+# rei - para o rei
+# pea - para o peão
+# Por fim imprima o tabuleiro na tela, deixando cada linha da matriz abaixo da outra. (Dica você pode usar a biblioteca numpy para auxiliar na impressão da matriz)
+
+tabuleiro=[['[ ]'  for coluna in range(8)] for linhas in range(8)]
+linha_pecas = ['tor', 'cav', 'bis', 'rai', 'rei', 'bis', 'cav', 'tor']
+tabuleiro[0] = linha_pecas
+tabuleiro[1] = ['pea'] * 8
+tabuleiro[6] = ['pea'] * 8
+tabuleiro[7] = linha_pecas
+for linha in tabuleiro:
+    print(' '.join(linha))
