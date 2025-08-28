@@ -49,7 +49,18 @@ else:
 
 # Escreva uma função que receba uma lista de palavras e retorne um dicionário com a contagem de cada palavra.
 
-# palavras = ["maçã", "banana", "maçã", "laranja", "banana", "maçã"]
+
+def frequency(my_list): 
+    freq = {} 
+    for item in my_list: 
+        if (item in freq): 
+            freq[item] += 1
+        else: 
+            freq[item] = 1
+    return freq
+my_list =["maçã", "banana", "maçã", "laranja", "banana", "maçã"] 
+final_list = frequency(my_list)  
+
 # Invertendo um dicionário
 
 # Dado o dicionário:
