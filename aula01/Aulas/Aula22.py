@@ -1,89 +1,89 @@
-# # Crie um dicionário simples
-# # Crie um dicionário chamado aluno com as chaves: "nome",
-# # "idade" e "nota", e preencha com valores fictícios.
+# Crie um dicionário simples
+# Crie um dicionário chamado aluno com as chaves: "nome",
+# "idade" e "nota", e preencha com valores fictícios.
 
-# aluno = {"nome": "Fred", "idade": 35, "nota": 8.5}
+aluno = {"nome": "Fred", "idade": 35, "nota": 8.5}
 
-# # Acessando valores
+# Acessando valores
 
-# # Dado o dicionário:
-
-# # produto = {"nome": "Caneta", "preço": 2.5, "estoque": 100}
-# # Imprima o nome do produto e a quantidade em estoque.
+# Dado o dicionário:
 
 # produto = {"nome": "Caneta", "preço": 2.5, "estoque": 100}
-# print((produto["nome"]), (produto["estoque"]))
+# Imprima o nome do produto e a quantidade em estoque.
 
-# # Adicionando novos pares chave-valor
+produto = {"nome": "Caneta", "preço": 2.5, "estoque": 100}
+print((produto["nome"]), (produto["estoque"]))
 
-# # Dado o dicionário:
+# Adicionando novos pares chave-valor
 
-# # pessoa = {"nome": "Carlos", "idade": 30}
-# # Adicione uma nova chave "cidade" com valor "São Paulo".
+# Dado o dicionário:
+
 # pessoa = {"nome": "Carlos", "idade": 30}
-# pessoa.update({"cidade": "São Paulo"})
-# print(pessoa)
+# Adicione uma nova chave "cidade" com valor "São Paulo".
+pessoa = {"nome": "Carlos", "idade": 30}
+pessoa.update({"cidade": "São Paulo"})
+print(pessoa)
 
-# # Removendo elementos
+# Removendo elementos
 
-# # Dado o dicionário:
+# Dado o dicionário:
 
-# # carro = {"marca": "Ford", "modelo": "Fiesta", "ano": 2010}
-# # Remova a chave "ano" do dicionário.
 # carro = {"marca": "Ford", "modelo": "Fiesta", "ano": 2010}
-# del carro["ano"]
-# print(carro)
+# Remova a chave "ano" do dicionário.
+carro = {"marca": "Ford", "modelo": "Fiesta", "ano": 2010}
+del carro["ano"]
+print(carro)
 
-# # Verificando existência de uma chave
+# Verificando existência de uma chave
 
-# # Verifique se a chave "telefone" existe no dicionário:
+# Verifique se a chave "telefone" existe no dicionário:
 
-# # contato = {"nome": "Ana", "email": "ana@email.com"}
 # contato = {"nome": "Ana", "email": "ana@email.com"}
-# if contato.items == "telefone":
-#     print(contato("telefone"))
-# else:
-#     print("Este usuário não possui telefone cadastrado")
+contato = {"nome": "Ana", "email": "ana@email.com"}
+if contato.items == "telefone":
+    print(contato("telefone"))
+else:
+    print("Este usuário não possui telefone cadastrado")
 
-# # Contando frequência de palavras
+# Contando frequência de palavras
 
-# # Escreva uma função que receba uma lista de palavras e retorne um dicionário com a contagem de cada palavra.
-
-
-# def frequency(my_list):
-#     freq = {}
-#     for item in my_list:
-#         if (item in freq):
-#             freq[item] += 1
-#         else:
-#             freq[item] = 1
-#     return freq
-# my_list =["maçã", "banana", "maçã", "laranja", "banana", "maçã"]
-# final_list = frequency(my_list)
-# print(final_list)
-# # Invertendo um dicionário
-# # Dado o dicionário:
-# # Crie um novo dicionário invertendo as chaves e os valores: {1: "a", 2: "b", 3: "c"}.
-# d = {"a": 1, "b": 2, "c": 3}
-# dicionario_invertido = {}
-# for chave, valor in d.items():
-#      dicionario_invertido[valor] = chave
-#      print(dicionario_invertido)
-
-# # Dicionário com listas
-
-# # Crie um dicionário onde cada chave é o nome de um aluno e o valor é uma lista com 3 notas.
-# # Depois, imprima a média de cada aluno.
-# notas_alunos={"João": [8, 9, 7], "Maria": [9, 8, 9], "Pedro": [7, 6, 8]}
-# for aluno, notas in notas_alunos.items():
-#     media = sum(notas) / len(notas)
-#     print(f"A média do aluno {aluno} é {media}")
+# Escreva uma função que receba uma lista de palavras e retorne um dicionário com a contagem de cada palavra.
 
 
-# # Mesclando dois dicionários
-# # Escreva uma função que recebe dois dicionários e retorna um novo dicionário
-# # contendo todos os pares chave-valor. Se houver chaves repetidas,
-# # o valor do segundo dicionário deve prevalecer.
+def frequency(my_list):
+    freq = {}
+    for item in my_list:
+        if (item in freq):
+            freq[item] += 1
+        else:
+            freq[item] = 1
+    return freq
+my_list =["maçã", "banana", "maçã", "laranja", "banana", "maçã"]
+final_list = frequency(my_list)
+print(final_list)
+# Invertendo um dicionário
+# Dado o dicionário:
+# Crie um novo dicionário invertendo as chaves e os valores: {1: "a", 2: "b", 3: "c"}.
+d = {"a": 1, "b": 2, "c": 3}
+dicionario_invertido = {}
+for chave, valor in d.items():
+     dicionario_invertido[valor] = chave
+     print(dicionario_invertido)
+
+# Dicionário com listas
+
+# Crie um dicionário onde cada chave é o nome de um aluno e o valor é uma lista com 3 notas.
+# Depois, imprima a média de cada aluno.
+notas_alunos={"João": [8, 9, 7], "Maria": [9, 8, 9], "Pedro": [7, 6, 8]}
+for aluno, notas in notas_alunos.items():
+    media = sum(notas) / len(notas)
+    print(f"A média do aluno {aluno} é {media}")
+
+
+# Mesclando dois dicionários
+# Escreva uma função que recebe dois dicionários e retorna um novo dicionário
+# contendo todos os pares chave-valor. Se houver chaves repetidas,
+# o valor do segundo dicionário deve prevalecer.
 def mesclar_dicionarios(d1, d2):
 
     dicionario_mesclado = d1.copy()
