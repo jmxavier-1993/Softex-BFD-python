@@ -62,9 +62,13 @@ print(f"a media do aluno01 eh: {sum(notasaluno01)/len(notasaluno01)} \n a media 
 
 tabuleiro=[['[ ]'  for coluna in range(8)] for linhas in range(8)]
 linha_pecas = ['tor', 'cav', 'bis', 'rai', 'rei', 'bis', 'cav', 'tor']
+linha_pecas2=linha_pecas
 tabuleiro[0] = linha_pecas
 tabuleiro[1] = ['pea'] * 8
-tabuleiro[6] = ['pea'] * 8
-tabuleiro[7] = linha_pecas
+tabuleiro[-2] = ['pea'] * 8
+tabuleiro[-1] = linha_pecas2
 for linha in tabuleiro:
-    print(' '.join(linha))
+    print(linha)
+
+# se precisar mudar a localização das peças precisa sobreescrever 
+tabuleiro
