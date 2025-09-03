@@ -1,11 +1,5 @@
 import sqlite3
 # crud_pets.py
-
-# Dicionário para armazenar os pets
-pets = {}
-proximo_id = 1
-
-
 def conectar_banco():
     # Cria ou conecta ao arquivo de banco de dados
     conn = sqlite3.connect('pets.db')
@@ -47,72 +41,124 @@ def cadastrar_pet_db():
 
 
 # Função para listar todos os pets
-def listar_pets(pets):
+def listar_pets():
+    """Lista todos os pets cadastrados no banco de dados."""
+    conn = conectar_banco()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT id, nome, idade, raca, adotado FROM pets")
+    pets = cursor.fetchall()
+    
     if not pets:
         print("Nenhum pet cadastrado.")
-        return
-
-    for id_pet, dados in pets.items():
-        status = "Adotado" if dados['adotado'] else "Disponível"
-        print(f"\nID: {id_pet}")
-        print(f"Nome: {dados['nome']}")
-        print(f"Idade: {dados['idade']} ano(s)")
-        print(f"Raça: {dados['raca']}")
-        print(f"Status: {status}")
-
+    else:
+        for pet in pets:
+            status = "Adotado" if pet[4] == 1 else "Disponível"
+            print(f"\nID: {pet[0]}")
+            print(f"Nome: {pet[1]}")
+            print(f"Idade: {pet[2]} ano(s)")
+            print(f"Raça: {pet[3]}")
+            print(f"Status: {status}")
+    
+    conn.close()
 # Função para buscar pet por nome
-def buscar_pet(pets):
+def buscar_pet():
+    """Busca pets por nome no banco de dados."""
+    conn = conectar_banco()
+    cursor = conn.cursor()
+    
     nome = input("Digite o nome do pet para buscar: ").lower()
-    encontrados = []
+    
+    cursor.execute("SELECT id, nome, idade, raca, adotado FROM pets WHERE lower(nome) LIKE ?", ('%' + nome + '%',))
+    encontrados = cursor.fetchall()
 
-    for id_pet, dados in pets.items():
-        if dados['nome'].lower() == nome:
-            encontrados.append((id_pet, dados))
-
-    if encontrados:
-        for id_pet, dados in encontrados:
-            status = "Adotado" if dados['adotado'] else "Disponível"
-            print(f"\nID: {id_pet} | Nome: {dados['nome']} | Idade: {dados['idade']} | Raça: {dados['raca']} | Status: {status}")
-    else:
+    if not encontrados:
         print("Nenhum pet com esse nome foi encontrado.")
-
-# Função para atualizar dados de um pet
-def atualizar_pet(pets):
-    id_pet = int(input("Digite o ID do pet para atualizar: "))
-
-    if id_pet in pets:
-        nome = input("Novo nome: ")
-        idade = int(input("Nova idade: "))
-        raca = input("Nova raça: ")
-
-        pets[id_pet]['nome'] = nome
-        pets[id_pet]['idade'] = idade
-        pets[id_pet]['raca'] = raca
-
-        print("Informações atualizadas com sucesso!")
     else:
-        print("ID inválido.")
+        for pet in encontrados:
+            status = "Adotado" if pet[4] == 1 else "Disponível"
+            print(f"\nID: {pet[0]} | Nome: {pet[1]} | Idade: {pet[2]} | Raça: {pet[3]} | Status: {status}")
+    
+    conn.close()
+# Função para atualizar dados de um pet
+def atualizar_pet():
+    """Atualiza os dados de um pet no banco de dados."""
+    conn = conectar_banco()
+    cursor = conn.cursor()
+    
+    try:
+        id_pet = int(input("Digite o ID do pet para atualizar: "))
+        
+        cursor.execute("SELECT * FROM pets WHERE id = ?", (id_pet,))
+        pet_existente = cursor.fetchone()
+
+        if pet_existente:
+            nome = input("Novo nome (ou Enter para manter o atual): ") or pet_existente[1]
+            idade = input("Nova idade (ou Enter para manter a atual): ") or pet_existente[2]
+            raca = input("Nova raça (ou Enter para manter a atual): ") or pet_existente[3]
+            
+            # Converte a idade para inteiro, se foi digitada
+            if isinstance(idade, str):
+                idade = int(idade)
+
+            cursor.execute('''
+                UPDATE pets
+                SET nome = ?, idade = ?, raca = ?
+                WHERE id = ?
+            ''', (nome, idade, raca, id_pet))
+            conn.commit()
+            print("Informações atualizadas com sucesso!")
+        else:
+            print("ID inválido.")
+    except ValueError:
+        print("Entrada inválida. Certifique-se de digitar um número para o ID e a idade.")
+    finally:
+        conn.close()
 
 # Função para marcar um pet como adotado
-def marcar_como_adotado(pets):
-    id_pet = int(input("Digite o ID do pet para marcar como adotado: "))
+def marcar_como_adotado():
+    """Marca um pet como adotado no banco de dados."""
+    conn = conectar_banco()
+    cursor = conn.cursor()
+    
+    try:
+        id_pet = int(input("Digite o ID do pet para marcar como adotado: "))
 
-    if id_pet in pets:
-        pets[id_pet]['adotado'] = True
-        print(f"Pet '{pets[id_pet]['nome']}' marcado como adotado!")
-    else:
-        print("ID inválido.")
-
+        cursor.execute("SELECT nome FROM pets WHERE id = ?", (id_pet,))
+        pet_nome = cursor.fetchone()
+        
+        if pet_nome:
+            cursor.execute("UPDATE pets SET adotado = 1 WHERE id = ?", (id_pet,))
+            conn.commit()
+            print(f"Pet '{pet_nome[0]}' marcado como adotado!")
+        else:
+            print("ID inválido.")
+    except ValueError:
+        print("Entrada inválida. Por favor, digite um número para o ID.")
+    finally:
+        conn.close()
 # Função para remover um pet do sistema
-def remover_pet(pets):
-    id_pet = int(input("Digite o ID do pet para remover: "))
+def remover_pet():
+    """Remove um pet do banco de dados."""
+    conn = conectar_banco()
+    cursor = conn.cursor()
+    
+    try:
+        id_pet = int(input("Digite o ID do pet para remover: "))
 
-    if id_pet in pets:
-        nome = pets[id_pet]['nome']
-        del pets[id_pet]
-        print(f"Pet '{nome}' removido com sucesso.")
-    else:
-        print("ID inválido.")
+        cursor.execute("SELECT nome FROM pets WHERE id = ?", (id_pet,))
+        pet_nome = cursor.fetchone()
+        
+        if pet_nome:
+            cursor.execute("DELETE FROM pets WHERE id = ?", (id_pet,))
+            conn.commit()
+            print(f"Pet '{pet_nome[0]}' removido com sucesso.")
+        else:
+            print("ID inválido.")
+    except ValueError:
+        print("Entrada inválida. Por favor, digite um número para o ID.")
+    finally:
+        conn.close()
 
 # Função para exibir o menu
 def menu():
@@ -134,25 +180,25 @@ def main():
 
 # Programa principal
 while True:
-    menu()
-    opcao = input("Escolha uma opção: ")
+        menu()
+        opcao = input("Escolha uma opção: ")
 
-    if opcao == '1':
-       cadastrar_pet_db()
-    elif opcao == '2':
-        listar_pets(pets)
-    elif opcao == '3':
-        buscar_pet(pets)
-    elif opcao == '4':
-        atualizar_pet(pets)
-    elif opcao == '5':
-        marcar_como_adotado(pets)
-    elif opcao == '6':
-        remover_pet(pets)
-    elif opcao == '0':
+        if opcao == '1':
+            cadastrar_pet_db()
+        elif opcao == '2':
+            listar_pets()
+        elif opcao == '3':
+            buscar_pet()
+        elif opcao == '4':
+            atualizar_pet()
+        elif opcao == '5':
+            marcar_como_adotado()
+        elif opcao == '6':
+            remover_pet()
+        elif opcao == '0':
             print("Saindo do sistema. Até logo!")
             break
-    else:
+        else:
             print("Opção inválida.")
 
 if __name__ == "__main__":
