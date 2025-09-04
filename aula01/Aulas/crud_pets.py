@@ -49,11 +49,13 @@ def cadastrar_pet(pets):
     nome = input("Nome do pet: ")
     idade = int(input("Idade do pet: "))
     raca = input("Raça do pet: ")
+    especie= input("Raça do pet: ")
 
     novo_pet = {
-        'id': proximo_id
+        'id': proximo_id,
         'nome': nome,
         'idade': idade,
+        'especie':especie,
         'raca': raca,
         'adotado': True
     }
