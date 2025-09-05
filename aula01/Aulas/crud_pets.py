@@ -7,7 +7,7 @@ pets = [{
         "especie": "Cachorro",
         "idade": 3,
         "raca": "Labrador",
-        "status": "disponível"
+        "adotado": "Disponível"
     },
     {
         "id":2,
@@ -15,7 +15,7 @@ pets = [{
         "especie": "Gato",
         "idade": 2,
         "raca": "Persa",
-        "status": "adotado"
+        "adotado": "Disponível"
     },
     {
         "id":3,
@@ -23,7 +23,7 @@ pets = [{
         "especie": "Cachorro",
         "idade": 5,
         "raca": "Poodle",
-        "status": "disponível"
+        "adotado": "Disponível"
     },
     {
         "id":4,
@@ -31,7 +31,7 @@ pets = [{
         "especie": "Gato",
         "idade": 1,
         "raca": "Siamês",
-        "status": "disponível"
+        "adotado": "Disponível"
     },
     {
         "id":5,
@@ -39,7 +39,7 @@ pets = [{
         "especie": "Cachorro",
         "idade": 4,
         "raca": "Pitbull",
-        "status": "adotado"
+        "adotado": "Disponível"
     }]
 proximo_id = pets [-1]["id"]+1 if pets else 1
 
@@ -49,7 +49,7 @@ def cadastrar_pet(pets):
     nome = input("Nome do pet: ")
     idade = int(input("Idade do pet: "))
     raca = input("Raça do pet: ")
-    especie= input("Raça do pet: ")
+    especie= input("Especie do pet: ")
 
     novo_pet = {
         'id': proximo_id,
@@ -57,7 +57,7 @@ def cadastrar_pet(pets):
         'idade': idade,
         'especie':especie,
         'raca': raca,
-        'adotado': True
+        'adotado': "Disponível"
     }
     pets.append(novo_pet)
     print(f"\nPet '{nome}' cadastrado com sucesso! ID: {proximo_id}")
@@ -67,15 +67,16 @@ def cadastrar_pet(pets):
 def listar_pets(pets):
     if not pets:
         print("Nenhum pet cadastrado.")
-        return
-
-    for id_pet, dados in pets.items():
-        status = "Adotado" if dados['adotado'] else "Disponível"
-        print(f"\nID: {id_pet}")
-        print(f"Nome: {dados['nome']}")
-        print(f"Idade: {dados['idade']} ano(s)")
-        print(f"Raça: {dados['raca']}")
-        print(f"Status: {status}")
+        return 
+    for pet in pets: # para cada dicionário de pet na lista de pets
+        status = "adotado" if pet.get('adotado') else "Disponível"
+        id= pet.get('id', 'N/A')
+        nome = pet.get('nome', 'N/A')
+        idade = pet.get('idade', 'N/A')
+        especie = pet.get('especie', 'N/A')
+        raca = pet.get('raca', 'N/A')
+        print(f"\nID: {id} | Nome: {nome} | Idade: {idade} | Raça: {raca} | Status: {status}")
+        
 
 # Função para buscar pet por nome
 def buscar_pet(pets):
@@ -148,7 +149,7 @@ while True:
     opcao = input("Escolha uma opção: ")
 
     if opcao == '1':
-        proximo_id = cadastrar_pet(pets, proximo_id)
+        proximo_id = cadastrar_pet(pets)
     elif opcao == '2':
         listar_pets(pets)
     elif opcao == '3':
