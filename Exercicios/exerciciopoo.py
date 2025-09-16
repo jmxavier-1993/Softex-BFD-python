@@ -137,6 +137,7 @@ cachorro01=Cachorro("café",5)
 print(cachorro01.especie) 
 cachorro01.especie="Cannis gato"
 print(cachorro01.especie) 
+print(cachorro01)
 
 
             
