@@ -66,10 +66,14 @@ print(gerente01.email)
 class Autenticacao:
    def login(self, senha_digitada):
         return self.senha == senha_digitada
+   def status(self) :
+     return f"Login permitido!!!"
 
 class Permissao:
     def verificar_permissao(self, nome, senha):
         return nome == self.nome and senha == self.senha
+    def status(self) :
+     return f"Status permitido!!!"
 
 class Administrador(Usuario, Autenticacao, Permissao):
     def __init__(self, nome, email, senha, nivel_acesso):
@@ -80,6 +84,9 @@ class Administrador(Usuario, Autenticacao, Permissao):
         return f"Administrador {self.nome} com nível {self.nivel_acesso}"
       
 admin = Administrador("Juliana", "juliana@adm.com", "minha_senha_secreta", 10)
+admin.status()
+print(admin.status())
+print(Administrador.__mro__)
 
 # Métodos herdados de Autenticacao
 print(f"Login com a senha correta: {admin.login('minha_senha_secreta')}")
@@ -89,25 +96,27 @@ print(f"Login com a senha errada: {admin.login('senha_errada')}")
 print(f"Verificar permissão com dados corretos: {admin.verificar_permissao('Juliana', 'minha_senha_secreta')}")
 print(f"Verificar permissão com dados incorretos: {admin.verificar_permissao('Joao', 'outra_senha')}")  
    
+# plus exercicio anterior
+
 # criar classe Pessoa com suas caracteristicas e uma classe funcionario que herde Pessoa
 
-# class Pessoa:
-#     def __init__(self,nome,idade,genero,estado_civil):
-#      self.nome=nome
-#      self.idade=idade
-#      self.genero=genero
-#      self.estado_civil=estado_civil
+class Pessoa:
+    def __init__(self,nome,idade,genero,estado_civil):
+     self.nome=nome
+     self.idade=idade
+     self.genero=genero
+     self.estado_civil=estado_civil
     
 
-# class funcionario(Pessoa):
-#    def __init__(self, nome, idade, genero, estado_civil,telefone,email):
-#       super().__init__(nome, idade, genero, estado_civil)
-#       self.telefone=telefone
-#       self.email=email
-#    def __str__(self):
-#       return f"Nome: {self.nome}, idade: {self.idade}, genero: {self.genero}, e estado civil:{self.estado_civil}, telefone: {self.telefone} ,email:{self.email}"
+class funcionario(Pessoa):
+   def __init__(self, nome, idade, genero, estado_civil,telefone,email):
+      super().__init__(nome, idade, genero, estado_civil)
+      self.telefone=telefone
+      self.email=email
+   def __str__(self):
+      return f"Nome: {self.nome}, idade: {self.idade}, genero: {self.genero}, e estado civil:{self.estado_civil}, telefone: {self.telefone} ,email:{self.email}"
 
-# pessoa1=funcionario("Juliana",31,"Feminino","Solteira",81978409237,"ju@hotmail.com")    
+pessoa1=funcionario("Juliana",31,"Feminino","Solteira",81978409237,"ju@hotmail.com")    
 
-# print(pessoa1)
+print(pessoa1)
   
