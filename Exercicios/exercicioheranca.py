@@ -64,14 +64,24 @@ print(gerente01.email)
 # Use Administrador.__mro__ para mostrar a ordem.
 
 class Autenticacao:
+      
    def login(self, senha_digitada):
-        return self.senha == senha_digitada
+        if self.senha == senha_digitada:
+         return f"Login permitido!!!"
+        else:
+         return f"Login Não autorizado!!!"
+         
    def status(self) :
-     return f"Login permitido!!!"
+     return f"Login permitido!!!"   
+  
 
 class Permissao:
     def verificar_permissao(self, nome, senha):
-        return nome == self.nome and senha == self.senha
+        if nome == self.nome and senha == self.senha:
+         return f"Login permitido!!!"
+        else:
+         return f"Login Não autorizado!!!"
+          
     def status(self) :
      return f"Status permitido!!!"
 
@@ -83,17 +93,17 @@ class Administrador(Usuario, Autenticacao, Permissao):
     def __str__(self):
         return f"Administrador {self.nome} com nível {self.nivel_acesso}"
       
-admin = Administrador("Juliana", "juliana@adm.com", "minha_senha_secreta", 10)
+admin = Administrador("Juliana", "juliana@adm.com", "12345", 10)
 admin.status()
 print(admin.status())
 print(Administrador.__mro__)
 
 # Métodos herdados de Autenticacao
-print(f"Login com a senha correta: {admin.login('minha_senha_secreta')}")
+print(f"Login com a senha correta: {admin.login('12345')}")
 print(f"Login com a senha errada: {admin.login('senha_errada')}")
 
 # Métodos herdados de Permissao
-print(f"Verificar permissão com dados corretos: {admin.verificar_permissao('Juliana', 'minha_senha_secreta')}")
+print(f"Verificar permissão com dados corretos: {admin.verificar_permissao('Juliana', '12345')}")
 print(f"Verificar permissão com dados incorretos: {admin.verificar_permissao('Joao', 'outra_senha')}")  
    
 # plus exercicio anterior
