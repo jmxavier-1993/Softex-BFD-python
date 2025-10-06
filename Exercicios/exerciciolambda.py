@@ -53,3 +53,5 @@ print(multiplicacao)
 
 # Dada a lista ["banana", "uva", "maçã", "laranja"], ordene as palavras pelo último caractere.
 
+lista4=["banana", "uva", "maçã", "laranja"]
+print(sorted(lista4,key= lambda lista4: lista4[-1]))
