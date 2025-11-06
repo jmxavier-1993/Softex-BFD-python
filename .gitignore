@@ -1,0 +1,12 @@
+# Variáveis de ambiente
+.env
+
+# Diretórios e arquivos de cache e build
+/venv/
+__pycache__/
+*.pyc
+/build/
+/dist/
+
+# Logs e dados temporários
+*.log
