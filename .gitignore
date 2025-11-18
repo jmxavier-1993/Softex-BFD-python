@@ -1,5 +1,5 @@
 # Variáveis de ambiente
-.env
+# .env
 
 # Diretórios e arquivos de cache e build
 /venv/
